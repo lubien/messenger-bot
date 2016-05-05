@@ -1,20 +1,18 @@
-'use strict';
-const koa = require('koa');
-const koaRouter = require('koa-router');
+const http = require('http');
+const BotFactory = require('messenger-bot');
 
-const app = koa();
-const router = koaRouter();
-
-router.get('/', function *() {
-  this.body = 'Hello World';
+const bot = new BotFactory({
+  token: 'EAAIvoT1Uwy4BANjTEMmbD7NZCCkTD9CZCZAmJF8MFq7EagIU2ObOZBhFFfOx3pLgb8jvuS3oZB14wQWi320ZCrb2hY6JbVK3GL9v4C617IRw8jcIs51yZCN5vZBDbvYbuS4s7ausLx9rovFQV0gXuDFQ9nrvh3MBorZC2BxflRdGjJAZDZD',
+  veify: 'you_shall_not_pass',
 });
 
-app
-  .use(router.routes())
-  .use(router.allowedMethods());
+bot.on('error', err => {
+  console.log(err.message);
+});
 
 let port = process.env.PORT || 8080;
 let ip = process.env.IP || '0.0.0.0';
-app.listen(port, ip, () => {
+
+http.createServer(bot.middleware()).listen(port, ip, () => {
   console.log(`Server listening at ${ip}:${port}`);
 });

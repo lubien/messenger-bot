@@ -4,14 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "koa": "^1.2.0",
-    "koa-router": "^5.4.0"
+    "messenger-bot": "^2.2.0"
   },
   "devDependencies": {
     "eslint": "^2.9.0",
