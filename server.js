@@ -1,8 +1,15 @@
 const http = require('http');
 const Bot = require('messenger-bot');
 const dotenv = require('dotenv');
+const requireAll = require('require-all');
+const path = require('path');
+const iterable = require('object-iterable');
 
 dotenv.config();
+
+const actions = iterable(requireAll({
+  dirname: path.join(__dirname, 'actions/'),
+}));
 
 const botSettings = {
   token: process.env.PAGE_TOKEN,
@@ -19,6 +26,14 @@ const bot = new Bot(botSettings);
 
 bot.on('error', err => {
   console.log(err.message);
+});
+
+bot.on('message', (payload, reply) => {
+  for (const { regex, callback } of actions) {
+    if (regex.test(payload.message.text)) {
+      callback(payload, reply);
+    }
+  }
 });
 
 const port = process.env.PORT || 8080;

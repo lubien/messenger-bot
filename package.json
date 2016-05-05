@@ -16,7 +16,9 @@
   "license": "MIT",
   "dependencies": {
     "dotenv": "^2.0.0",
-    "messenger-bot": "^2.2.0"
+    "messenger-bot": "^2.2.0",
+    "object-iterable": "^0.2.1",
+    "require-all": "^2.0.0"
   },
   "devDependencies": {
     "eslint": "^2.9.0",
