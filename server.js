@@ -1,5 +1,8 @@
 const http = require('http');
 const Bot = require('messenger-bot');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const botSettings = {
   token: process.env.PAGE_TOKEN,
