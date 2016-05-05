@@ -1,10 +1,18 @@
 const http = require('http');
-const BotFactory = require('messenger-bot');
+const Bot = require('messenger-bot');
 
-const bot = new BotFactory({
-  token: 'EAAIvoT1Uwy4BANjTEMmbD7NZCCkTD9CZCZAmJF8MFq7EagIU2ObOZBhFFfOx3pLgb8jvuS3oZB14wQWi320ZCrb2hY6JbVK3GL9v4C617IRw8jcIs51yZCN5vZBDbvYbuS4s7ausLx9rovFQV0gXuDFQ9nrvh3MBorZC2BxflRdGjJAZDZD',
-  verify: 'you_shall_not_pass',
-});
+const botSettings = {
+  token: process.env.PAGE_TOKEN,
+};
+
+if (process.env.VERIFY_TOKEN) {
+  botSettings.verify = process.env.VERIFY_TOKEN;
+}
+if (process.env.APP_SECRET) {
+  botSettings.verify = process.env.APP_SECRET;
+}
+
+const bot = new Bot(botSettings);
 
 bot.on('error', err => {
   console.log(err.message);
