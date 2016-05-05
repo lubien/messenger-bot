@@ -10,8 +10,8 @@ bot.on('error', err => {
   console.log(err.message);
 });
 
-let port = process.env.PORT || 8080;
-let ip = process.env.IP || '0.0.0.0';
+const port = process.env.PORT || 8080;
+const ip = process.env.IP || '0.0.0.0';
 
 http.createServer(bot.middleware()).listen(port, ip, () => {
   console.log(`Server listening at ${ip}:${port}`);
